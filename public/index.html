@@ -1,1 +1,572 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PropIQ – AI Real Estate Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     SIDEBAR NAV
+═══════════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-icon">🏙️</span>
+    <span class="logo-text">PropIQ</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#" class="nav-item active" data-section="dashboard">
+      <span class="nav-icon">📊</span><span class="nav-label">Dashboard</span>
+    </a>
+    <a href="#" class="nav-item" data-section="analyzer">
+      <span class="nav-icon">🔍</span><span class="nav-label">Analyzer</span>
+    </a>
+    <a href="#" class="nav-item" data-section="emi">
+      <span class="nav-icon">🏦</span><span class="nav-label">EMI Calculator</span>
+    </a>
+    <a href="#" class="nav-item" data-section="compare">
+      <span class="nav-icon">⚖️</span><span class="nav-label">Compare</span>
+    </a>
+    <a href="#" class="nav-item" data-section="areas">
+      <span class="nav-icon">🗺️</span><span class="nav-label">Area Insights</span>
+    </a>
+    <a href="#" class="nav-item" data-section="report">
+      <span class="nav-icon">📄</span><span class="nav-label">AI Report</span>
+    </a>
+    <a href="#" class="nav-item" data-section="ai-direct">
+      <span class="nav-icon">🤖</span><span class="nav-label">Ask AI</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <span class="version-badge">v2.0 • AI Powered</span>
+  </div>
+</aside>
+
+<!-- Mobile hamburger -->
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════ -->
+<main class="main-content" id="mainContent">
+
+  <!-- ── HEADER ── -->
+  <header class="top-header">
+    <div class="header-left">
+      <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      <p class="page-subtitle" id="pageSubtitle">Your real estate investment intelligence hub</p>
+    </div>
+    <div class="header-right">
+      <div class="market-pulse">
+        <span class="pulse-dot"></span>
+        <span class="pulse-text">Markets Open</span>
+      </div>
+      <div class="header-stats">
+        <div class="stat-chip">🏠 Avg Yield: 3.8%</div>
+        <div class="stat-chip">📈 Growth: 9.2%</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════ DASHBOARD ═══ -->
+  <section class="section active" id="section-dashboard">
+    <div class="dashboard-grid">
+      <!-- Stat Cards -->
+      <div class="stat-card" id="dc-roi">
+        <div class="stat-card-icon">💰</div>
+        <div class="stat-card-body">
+          <span class="stat-label">Last ROI</span>
+          <span class="stat-value" id="dash-roi">—</span>
+        </div>
+        <div class="stat-card-trend positive">↑ calculated</div>
+      </div>
+      <div class="stat-card" id="dc-score">
+        <div class="stat-card-icon">🎯</div>
+        <div class="stat-card-body">
+          <span class="stat-label">Deal Score</span>
+          <span class="stat-value" id="dash-score">—</span>
+        </div>
+        <div class="stat-card-trend neutral">out of 100</div>
+      </div>
+      <div class="stat-card" id="dc-risk">
+        <div class="stat-card-icon">⚡</div>
+        <div class="stat-card-body">
+          <span class="stat-label">Risk Level</span>
+          <span class="stat-value" id="dash-risk">—</span>
+        </div>
+        <div class="stat-card-trend" id="dash-risk-trend">pending analysis</div>
+      </div>
+      <div class="stat-card" id="dc-emi">
+        <div class="stat-card-icon">🏦</div>
+        <div class="stat-card-body">
+          <span class="stat-label">Last EMI</span>
+          <span class="stat-value" id="dash-emi">—</span>
+        </div>
+        <div class="stat-card-trend neutral">per month</div>
+      </div>
+
+      <!-- Quick Start -->
+      <div class="quick-start-card">
+        <h3>🚀 Quick Start</h3>
+        <p>Analyze your first property in under 60 seconds</p>
+        <div class="quick-steps">
+          <div class="quick-step">
+            <span class="step-num">1</span>
+            <span>Enter property details in Analyzer</span>
+          </div>
+          <div class="quick-step">
+            <span class="step-num">2</span>
+            <span>Get ROI, Score & Risk instantly</span>
+          </div>
+          <div class="quick-step">
+            <span class="step-num">3</span>
+            <span>Generate AI Investment Report</span>
+          </div>
+          <div class="quick-step">
+            <span class="step-num">4</span>
+            <span>Chat with AI for deep guidance</span>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="goToSection('analyzer')">Start Analyzing →</button>
+      </div>
+
+      <!-- Market Snapshot -->
+      <div class="market-snapshot-card">
+        <h3>📈 Market Snapshot</h3>
+        <div class="market-items">
+          <div class="market-item">
+            <span class="mi-city">Delhi NCR</span>
+            <span class="mi-bar"><span class="mi-fill" style="width:75%"></span></span>
+            <span class="mi-val">8%</span>
+          </div>
+          <div class="market-item">
+            <span class="mi-city">Bengaluru</span>
+            <span class="mi-bar"><span class="mi-fill" style="width:90%"></span></span>
+            <span class="mi-val">11%</span>
+          </div>
+          <div class="market-item">
+            <span class="mi-city">Hyderabad</span>
+            <span class="mi-bar"><span class="mi-fill" style="width:88%"></span></span>
+            <span class="mi-val">10.5%</span>
+          </div>
+          <div class="market-item">
+            <span class="mi-city">Mumbai</span>
+            <span class="mi-bar"><span class="mi-fill" style="width:60%"></span></span>
+            <span class="mi-val">6.5%</span>
+          </div>
+          <div class="market-item">
+            <span class="mi-city">Pune</span>
+            <span class="mi-bar"><span class="mi-fill" style="width:82%"></span></span>
+            <span class="mi-val">9.5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="activity-card">
+        <h3>🕒 Recent Activity</h3>
+        <div id="recentActivity" class="activity-list">
+          <p class="empty-state">No analyses yet. Start by analyzing a property!</p>
+        </div>
+      </div>
+
+      <!-- Tips Card -->
+      <div class="tips-card">
+        <h3>💡 Pro Tips</h3>
+        <div class="tip-rotator" id="tipRotator">
+          <p class="tip-text">"Rental yield above 5% is considered strong in Indian metro markets."</p>
+        </div>
+        <div class="tip-dots">
+          <span class="tip-dot active"></span>
+          <span class="tip-dot"></span>
+          <span class="tip-dot"></span>
+          <span class="tip-dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ ANALYZER ═══ -->
+  <section class="section" id="section-analyzer">
+    <div class="two-col-layout">
+      <!-- Input Panel -->
+      <div class="panel input-panel">
+        <div class="panel-header">
+          <span class="panel-icon">🔍</span>
+          <h2>Property Investment Analyzer</h2>
+        </div>
+        <div class="form-group">
+          <label>Property Price (₹)</label>
+          <input type="number" id="propPrice" placeholder="e.g. 5000000" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Monthly Rent Expected (₹)</label>
+          <input type="number" id="propRent" placeholder="e.g. 25000" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Expected Annual Growth (%)</label>
+          <input type="number" id="propGrowth" placeholder="e.g. 8" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Location (optional)</label>
+          <select id="propLocation" class="inp">
+            <option value="">Select city...</option>
+            <option>Delhi</option><option>Noida</option><option>Gurgaon</option>
+            <option>Mumbai</option><option>Bengaluru</option><option>Hyderabad</option>
+            <option>Pune</option><option>Chennai</option><option>Kolkata</option>
+            <option>Ahmedabad</option><option>Jaipur</option><option>Lucknow</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Property Type</label>
+          <div class="prop-type-selector">
+            <button class="type-btn active" data-type="apartment">🏢 Apartment</button>
+            <button class="type-btn" data-type="villa">🏠 Villa</button>
+            <button class="type-btn" data-type="plot">🌿 Plot</button>
+            <button class="type-btn" data-type="commercial">🏪 Commercial</button>
+          </div>
+        </div>
+        <button class="btn-primary full-width" id="analyzeBtn" onclick="analyzeProperty()">
+          <span class="btn-text">Analyze Investment</span>
+          <span class="btn-loader hidden">⏳</span>
+        </button>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="panel results-panel" id="analyzerResults">
+        <div class="panel-header">
+          <span class="panel-icon">📊</span>
+          <h2>Analysis Results</h2>
+        </div>
+        <div class="results-placeholder" id="resultsPlaceholder">
+          <div class="placeholder-icon">🏗️</div>
+          <p>Enter property details and click <strong>Analyze</strong> to see results</p>
+        </div>
+        <div class="results-content hidden" id="resultsContent">
+          <!-- Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-label">ROI</span>
+              <span class="metric-val" id="res-roi">—</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Rental Yield</span>
+              <span class="metric-val" id="res-yield">—</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Break-even</span>
+              <span class="metric-val" id="res-breakeven">—</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Annual Income</span>
+              <span class="metric-val" id="res-annual">—</span>
+            </div>
+          </div>
+
+          <!-- Deal Score -->
+          <div class="deal-score-box" id="dealScoreBox">
+            <div class="score-label">Deal Score</div>
+            <div class="score-circle-wrap">
+              <svg class="score-svg" viewBox="0 0 120 120">
+                <circle class="score-bg" cx="60" cy="60" r="50"/>
+                <circle class="score-fill" id="scoreArc" cx="60" cy="60" r="50"
+                  stroke-dasharray="314" stroke-dashoffset="314"/>
+              </svg>
+              <div class="score-number" id="scoreNumber">0</div>
+            </div>
+            <div class="score-badge" id="scoreBadge">—</div>
+          </div>
+
+          <!-- Risk Warnings -->
+          <div class="risk-box" id="riskBox"></div>
+
+          <!-- Action Buttons -->
+          <div class="result-actions">
+            <button class="btn-secondary" onclick="generateReport()">📄 Generate AI Report</button>
+            <button class="btn-secondary" onclick="addToCompare()">⚖️ Add to Compare</button>
+            <button class="btn-secondary" onclick="askAboutDeal()">💬 Ask AI About This</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ EMI CALCULATOR ═══ -->
+  <section class="section" id="section-emi">
+    <div class="two-col-layout">
+      <div class="panel input-panel">
+        <div class="panel-header">
+          <span class="panel-icon">🏦</span>
+          <h2>Loan & EMI Calculator</h2>
+        </div>
+        <div class="form-group">
+          <label>Loan Amount (₹)</label>
+          <input type="number" id="loanAmount" placeholder="e.g. 4000000" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Annual Interest Rate (%)</label>
+          <input type="number" id="loanRate" placeholder="e.g. 8.5" step="0.1" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Loan Duration (years)</label>
+          <input type="number" id="loanYears" placeholder="e.g. 20" class="inp" />
+          <input type="range" id="loanYearsSlider" min="5" max="30" value="20" class="range-slider" />
+          <div class="range-labels"><span>5 yrs</span><span id="sliderVal">20 yrs</span><span>30 yrs</span></div>
+        </div>
+        <div class="form-group">
+          <label>Expected Monthly Rent (₹) — for profit calc</label>
+          <input type="number" id="emiRent" placeholder="e.g. 25000" class="inp" />
+        </div>
+        <button class="btn-primary full-width" onclick="calculateEMI()">Calculate EMI</button>
+      </div>
+
+      <div class="panel results-panel">
+        <div class="panel-header">
+          <span class="panel-icon">💳</span>
+          <h2>EMI Breakdown</h2>
+        </div>
+        <div class="results-placeholder" id="emiPlaceholder">
+          <div class="placeholder-icon">🔢</div>
+          <p>Enter loan details to see your EMI breakdown</p>
+        </div>
+        <div class="emi-results hidden" id="emiResults">
+          <div class="emi-hero">
+            <span class="emi-label">Monthly EMI</span>
+            <span class="emi-amount" id="emiAmount">₹0</span>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-label">Total Payment</span>
+              <span class="metric-val" id="emiTotal">—</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Total Interest</span>
+              <span class="metric-val" id="emiInterest">—</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Monthly Cash Flow</span>
+              <span class="metric-val" id="emiCashflow">—</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Interest Burden</span>
+              <span class="metric-val" id="emiPct">—</span>
+            </div>
+          </div>
+          <!-- Donut chart -->
+          <div class="donut-wrap">
+            <svg class="donut-svg" viewBox="0 0 120 120">
+              <circle class="donut-bg" cx="60" cy="60" r="45"/>
+              <circle class="donut-principal" id="donutPrincipal" cx="60" cy="60" r="45"
+                stroke-dasharray="283" stroke-dashoffset="0"/>
+              <circle class="donut-interest" id="donutInterest" cx="60" cy="60" r="45"
+                stroke-dasharray="283" stroke-dashoffset="0"/>
+            </svg>
+            <div class="donut-legend">
+              <span class="legend-item"><span class="legend-dot principal"></span>Principal</span>
+              <span class="legend-item"><span class="legend-dot interest"></span>Interest</span>
+            </div>
+          </div>
+          <div class="amortization-toggle">
+            <button class="btn-secondary small" onclick="toggleAmortization()">📋 View Schedule</button>
+          </div>
+          <div class="amortization-table hidden" id="amortTable"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ COMPARE ═══ -->
+  <section class="section" id="section-compare">
+    <div class="panel full-panel">
+      <div class="panel-header">
+        <span class="panel-icon">⚖️</span>
+        <h2>Property Comparison Tool</h2>
+      </div>
+      <p class="panel-desc">Add up to 3 properties for side-by-side comparison. Fill details below or use "Add to Compare" from the Analyzer.</p>
+
+      <div class="compare-inputs" id="compareInputs">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <div class="compare-actions-bar">
+        <button class="btn-secondary" id="addPropBtn" onclick="addCompareProperty()">+ Add Property</button>
+        <button class="btn-primary" onclick="runComparison()">Compare Properties</button>
+        <button class="btn-ghost" onclick="clearComparison()">Clear All</button>
+      </div>
+
+      <div class="compare-results hidden" id="compareResults"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ AREA INSIGHTS ═══ -->
+  <section class="section" id="section-areas">
+    <div class="panel full-panel">
+      <div class="panel-header">
+        <span class="panel-icon">🗺️</span>
+        <h2>Area Insights & Market Data</h2>
+      </div>
+      <div class="area-search-bar">
+        <input type="text" id="areaSearch" placeholder="Search city..." class="inp" oninput="filterAreas(this.value)" />
+        <div class="area-filter-chips">
+          <button class="chip active" onclick="filterByDemand('all', this)">All</button>
+          <button class="chip" onclick="filterByDemand('high', this)">🔥 High Demand</button>
+          <button class="chip" onclick="filterByDemand('medium', this)">📊 Medium</button>
+          <button class="chip" onclick="filterByDemand('low', this)">📉 Low</button>
+        </div>
+      </div>
+      <div class="area-grid" id="areaGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ AI REPORT ═══ -->
+  <section class="section" id="section-report">
+    <div class="two-col-layout">
+      <div class="panel input-panel">
+        <div class="panel-header">
+          <span class="panel-icon">📄</span>
+          <h2>AI Investment Report</h2>
+        </div>
+        <p class="panel-desc">Generate a comprehensive AI-powered investment report for any property.</p>
+        <div class="form-group">
+          <label>Property Price (₹)</label>
+          <input type="number" id="rpPrice" placeholder="e.g. 7500000" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Monthly Rent (₹)</label>
+          <input type="number" id="rpRent" placeholder="e.g. 30000" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Expected Growth (%)</label>
+          <input type="number" id="rpGrowth" placeholder="e.g. 9" class="inp" />
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <select id="rpLocation" class="inp">
+            <option value="">Select...</option>
+            <option>Delhi</option><option>Noida</option><option>Gurgaon</option>
+            <option>Mumbai</option><option>Bengaluru</option><option>Hyderabad</option>
+            <option>Pune</option><option>Chennai</option><option>Kolkata</option>
+            <option>Ahmedabad</option><option>Jaipur</option><option>Lucknow</option>
+          </select>
+        </div>
+        <button class="btn-primary full-width" id="reportBtn" onclick="generateStandaloneReport()">
+          🤖 Generate AI Report
+        </button>
+        <div class="saved-reports-label">📁 Saved Reports</div>
+        <div id="savedReportsList" class="saved-reports-list"></div>
+      </div>
+
+      <div class="panel report-panel">
+        <div class="panel-header">
+          <span class="panel-icon">📋</span>
+          <h2>Report Output</h2>
+          <button class="btn-ghost small" id="copyReportBtn" onclick="copyReport()" style="margin-left:auto">📋 Copy</button>
+        </div>
+        <div class="report-placeholder" id="reportPlaceholder">
+          <div class="placeholder-icon">🤖</div>
+          <p>Your AI-generated report will appear here</p>
+        </div>
+        <div class="report-content hidden" id="reportContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ DIRECT AI ═══ -->
+  <section class="section" id="section-ai-direct">
+    <div class="panel full-panel ai-direct-panel">
+      <div class="panel-header">
+        <span class="panel-icon">🤖</span>
+        <h2>Ask AI Directly</h2>
+      </div>
+      <p class="panel-desc">Ask any real estate investment question. Get expert AI-powered answers.</p>
+
+      <div class="ai-suggestions">
+        <span class="suggestion-label">Try asking:</span>
+        <button class="suggestion-btn" onclick="fillAIInput('Should I invest in Noida or Gurgaon for 2025?')">Noida vs Gurgaon 2025?</button>
+        <button class="suggestion-btn" onclick="fillAIInput('What are red flags when buying a resale property?')">Resale property risks?</button>
+        <button class="suggestion-btn" onclick="fillAIInput('How to evaluate a commercial property investment?')">Commercial property tips?</button>
+        <button class="suggestion-btn" onclick="fillAIInput('Is it better to buy or rent in Bangalore right now?')">Buy vs rent in Bangalore?</button>
+      </div>
+
+      <div class="ai-direct-form">
+        <textarea id="aiDirectInput" class="ai-textarea" placeholder="e.g. I'm looking at a 2BHK in Bengaluru for ₹80 lakhs with ₹28,000 monthly rent. Is it a good deal?" rows="4"></textarea>
+        <div class="ai-context-toggles">
+          <label class="toggle-label">
+            <input type="checkbox" id="includeLastAnalysis" /> Include last analysis data
+          </label>
+        </div>
+        <button class="btn-primary" id="aiDirectBtn" onclick="sendAIDirect()">
+          Send to AI →
+        </button>
+      </div>
+
+      <div class="ai-response-area hidden" id="aiDirectResponse">
+        <div class="ai-response-header">
+          <span>🤖 AI Response</span>
+          <span class="ai-model-badge" id="aiModelBadge">—</span>
+        </div>
+        <div class="ai-response-body" id="aiDirectResponseText"></div>
+      </div>
+
+      <div class="ai-history-section">
+        <h3>🕒 Query History</h3>
+        <div id="aiHistory" class="ai-history-list">
+          <p class="empty-state">Your query history will appear here</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════
+     FLOATING CHATBOT
+═══════════════════════════════════════════════════ -->
+<div class="chat-fab" id="chatFab" onclick="toggleChat()">
+  <span class="chat-fab-icon">💬</span>
+  <span class="chat-notification" id="chatNotif"></span>
+</div>
+
+<div class="chatbot-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-header-info">
+      <span class="chat-name">PropIQ AI Advisor</span>
+      <span class="chat-status">Online · Powered by AI</span>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">
+      <div class="msg-bubble">
+        👋 Hi! I'm your PropIQ AI advisor. Ask me anything about real estate investments — ROI analysis, market trends, EMI guidance, property comparison, and more!
+      </div>
+    </div>
+    <div class="chat-quick-replies">
+      <button class="qr-btn" onclick="sendQuickReply('Is now a good time to invest in real estate?')">Good time to invest?</button>
+      <button class="qr-btn" onclick="sendQuickReply('What is a good ROI for rental property in India?')">Good ROI in India?</button>
+      <button class="qr-btn" onclick="sendQuickReply('How do I calculate rental yield?')">Rental yield formula?</button>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Ask about any property..." class="chat-inp"
+      onkeydown="if(event.key==='Enter') sendChat()" />
+    <button class="chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
